@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+    {% block titre %} A propos de l'auteur {% endblock titre%}
+    {% block contenu %}
+        <h2>Nom : {{auteur.nom}}</h2>
+        <h2>Prenom : {{auteur.prenom}}</h2>
+        <h2>Age : {{auteur.age}}</h2>
+        <div>Sexe : 
+        {% if auteur.sexe %}
+            Homme
+            {% else %}
+            Femme
+        {% endif %}
+        </div>
+    {% endblock contenu%}

@@ -1,0 +1,61 @@
+ {% extends "base.html.twig" %}
+    {% block titre %} {{livre.titre}} {% endblock titre%}
+    {% block contenu %}
+      {% if isModification %}
+         <form method="POST" action="/livres/modificationServer">
+            <div class="row m-2">
+               <div class="col-6">
+                  <h2>Information : </h2>
+                  <div class="form-group">
+                     <label for="titre">Titre du livre</label>
+                     <input type="text" class="form-control" id="titre" name="titre" value="{{livre.titre}}">
+                   </div>
+                  <div class="form-group">
+                     <label for="auteur">Auteur</label>
+                     <input type="text" class="form-control" id="auteur" name="auteur" value="{{livre.auteur}}">
+                  </div>
+                  <div class="form-group">
+                     <label for="pages">Nombre de pages</label>
+                     <input type="number" class="form-control" id="pages" name="pages" value="{{livre.pages}}">
+                  </div>
+               </div>
+               <div class="col-6">
+                  <h2>Avis du lecteur : </h2>
+                     <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3">{{livre.description}}</textarea>
+                     </div>
+               </div>
+            </div>
+            <input type="hidden" name="identifiant" value="{{livre._id}}">
+            <input type="submit" class="btn btn-primary w-100 validerBtn" value="Valider">
+         </form>
+         <form method="POST" action="/livres/updateImage" enctype="multipart/form-data">
+            <input type="hidden" name="identifiant" value="{{livre._id}}">
+            <h2>Image : </h2>
+            <div class="row">
+               <div class="col-3">
+                  <img src="/images/{{livre.image}}" class="img-fluid" alt="">
+               </div>
+            <div class="col-9">
+               <div class="form-group">
+                  <label for="image">Image</label>
+                  <input type="file" class="form-control-file" id="image" name="image">
+               </div>
+                  <input type="submit" class="btn btn-primary validerBtn" value="Modifier l'image">
+            </div>
+            </div>
+         </form>
+      {% else %}
+      <div class="m-2">
+         <div class="col-6">           
+            <h2>Information:</h2>
+               <div> Auteur : {{livre.auteur}}</div>
+               <div> Nombre de pages : {{livre.pages}}</div>
+               <img src="/images/{{livre.image}}" width="200px" alt="">
+         </div>
+      <div class="col-6">
+         <h2>Avis du lecteur:</h2>
+            <div>{{livre.description}} </div>
+      {% endif %}
+    {% endblock contenu%}
