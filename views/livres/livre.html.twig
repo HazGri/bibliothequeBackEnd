@@ -57,15 +57,18 @@
             </div>
          </form>
       {% else %}
-      <div class="m-2">
+      <div class="row avis">
          <div class="col-6">           
             <h2>Information:</h2>
                <div> Auteur : <a href="/auteurs/{{livre.auteur._id}}">{{livre.auteur.nom}} {{livre.auteur.prenom}} </a></div>
                <div> Nombre de pages : {{livre.pages}}</div>
                <img src="/images/{{livre.image}}" width="200px" alt="">
          </div>
-      <div class="col-6">
+         <div class="col-6">
          <h2>Avis du lecteur:</h2>
-            <div>{{livre.description}} </div>
+            <div class="p_avis">{{livre.description}} </div>
+         </div>
+      </div>
       {% endif %}
     {% endblock contenu%}
+}

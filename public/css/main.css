@@ -36,8 +36,21 @@ input {
     border: solid 2px black;
     border-radius: 6px;
     background-color:#e1c0ae;
-    padding: 10px;
+    padding: 15px;
+    font-size: 30px;
+}
+.p_avis {
+    border: solid 2px black;
+    border-radius: 6px;
+    background-color:#dcdfbf;
+    padding: 15px;
+    font-size: 30px;
 }
 a {
     text-decoration: none;
+}
+@media (max-width: 767px) {
+    .avis {
+        display: inline;
+    }
 }
