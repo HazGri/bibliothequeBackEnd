@@ -47,6 +47,7 @@ exports.livres_ajout = (req, res) => {
 exports.livre_affichage = (req, res) => {
     livreModel
       .findById(req.params.id)
+      .populate("auteur")
       .exec()
       .then((livre) => {
         res.render("livres/livre.html.twig", { livre: livre, isModifcation:false });
@@ -58,16 +59,29 @@ exports.livre_affichage = (req, res) => {
 
 //modifciation d'un livre 
 exports.livre_modif = (req,res) => {
-    livreModel
-    .findById(req.params.id)
+    auteursModel.find()
     .exec()
-    .then((livre) => {
-      res.render("livres/livre.html.twig", { livre: livre, isModification:true });
+    .then(auteurs => {
+      livreModel
+      .findById(req.params.id)
+      .populate("auteur")
+      .exec()
+      .then( livre => {
+        res.render("livres/livre.html.twig", { 
+          livre: livre, 
+          auteurs: auteurs ,
+          isModification:true
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+      
     })
-    .catch((error) => {
+    .catch(error => {
       console.log(error);
-    });
-  }
+    })
+}
 
 //modif livre serveur
 exports.livre_modif_serveur = async (req, res) => {
