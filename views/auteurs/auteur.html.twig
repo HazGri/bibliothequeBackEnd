@@ -11,4 +11,20 @@
             Femme
         {% endif %}
         </div>
-    {% endblock contenu%}
+        <h2>Livres</h2>
+            <div class="row">
+                {% for livre in auteur.livres %}
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <img width="100px"src="/images/{{livre.image}}">
+                        </div>
+                        <div class="col-6">
+                            <div> Titre : {{livre.titre}}</div>
+                            <div> Nombres de pages : {{livre.pages}}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+    {% endblock contenu %}
