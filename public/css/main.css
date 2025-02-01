@@ -31,3 +31,13 @@ input {
 .checkbox {
     margin-top: 10px;
 }
+
+.p_accueil {
+    border: solid 2px black;
+    border-radius: 6px;
+    background-color:#e1c0ae;
+    padding: 10px;
+}
+a {
+    text-decoration: none;
+}
