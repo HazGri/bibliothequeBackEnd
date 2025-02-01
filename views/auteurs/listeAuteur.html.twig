@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+    {% block titre %}
+       page affichant les auteurs
+    {% endblock titre%}
+    {% block contenu %}
+          <table class="table text-center" id="tableau-livres">
+            <thead id="table_header">
+                <tr class="table-dark">
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Nombre de livres</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for auteur in auteurs %}
+                <tr>
+                    <td class="align-middle"><a href="/auteurs/{{auteur._id}}">{{auteur.prenom}}</a></td>
+                    <td class="align-middle">{{auteur.nom}}</td>
+                    <td class="align-middle">{{auteur.livres|length}}</td>
+                    <td class="align-middle"><a href="" class="btn btn-warning">Modifier</a></td>
+                     <td class="align-middle">
+                        <form method="POST" action="" onSubmit="return confirm('Voulez vous vraiment supprimer ce livre?')">
+                           <button class="btn btn-danger" type="submit">Supprimer</button>
+                        </form>
+                     </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+    {% endblock contenu%}

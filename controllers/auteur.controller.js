@@ -13,3 +13,15 @@ exports.auteur_affichage = (req, res) => {
         console.log(error);
     })
 }
+
+exports.auteurs_affichage= (req, res) => {
+    auteurModel.find()
+    .populate("livres")
+    .exec()
+    .then(auteurs => {
+        res.render("auteurs/listeAuteur.html.twig" , {auteurs : auteurs})
+    })
+    .catch(error => {
+        console.log(error)
+    });
+}

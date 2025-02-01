@@ -8,4 +8,13 @@ const auteurModel = mongoose.Schema({
     sexe : Boolean
 })
 
+auteurModel.virtual("livres", {
+    ref : "Livre",
+    localField : "_id",
+    foreignField : "auteur",
+})
+
+
+
+
 module.exports = mongoose.model("Auteur", auteurModel);
