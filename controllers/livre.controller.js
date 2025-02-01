@@ -1,17 +1,28 @@
 const livreModel = require("../models/livres.model");
+const auteursModel = require("../models/auteurs.model")
 const mongoose = require("mongoose");
 const fs = require('fs');
 
 
 //affichage de la liste de livre
 exports.livres_affichage = (req, res) => {
-    livreModel
-      .find()
-      .exec()
-      .then((livres) => {
-        res.render("livres/liste.html.twig", { listeLivres: livres, message : res.locals.message });
-      })
-      .catch();
+    auteursModel.find()
+    .exec()
+    .then(auteurs =>{
+      livreModel.find()
+        .populate("auteur")
+        .exec()
+        .then((livres) => {
+          res.render("livres/liste.html.twig", {
+             listeLivres: livres, 
+             auteurs : auteurs, 
+             message : res.locals.message });
+        })
+        .catch();
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 
 //ajout d'un livre
